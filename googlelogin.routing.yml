@@ -1,0 +1,7 @@
+googlelogin.settings:
+  path: '/admin/config/system/googleloginform'
+  defaults:
+    _form: '\Drupal\googlelogin\Form\GoogleLoginForm'
+    _title: 'Settings for google login module'
+  requirements:
+    _permission: 'administer site configuration'
