@@ -1,0 +1,23 @@
+{
+  "name": "drupal/googlelogin",
+  "description": "Login in drupal using your google account.",
+  "type": "drupal-module",
+  "authors": [
+    {
+      "name": "Oskar Calvo",
+      "email": "calvo.oskar@gmail.com",
+      "role": "Mainteiner"
+    }
+  ],
+  "license": "GPL-3.0",
+  "minimun-stability": "dev",
+  "require": {
+    "google/apiclient": "^2.0",
+    "php": ">=5.4"
+  },
+  "autoload":{
+    "psr-4":{
+      "Googleuth\\": "/src/GoogleAuth"
+    }
+  }
+}
