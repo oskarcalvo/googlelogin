@@ -52,7 +52,33 @@ class GoogleLoginFormTest extends WebTestBase {
     $this->drupalLogin($this->adminuser);
     $this->drupalGet('/admin/config/system/googleloginform');
     $this->assertResponse(200, 'Url is accesible for adminUser');
+  
+  }
+
+  /**
+   * Test the form has a Customer id field.
+   */
+  public function GoogleLoginFormTestCustomerIdFieldExists(){
+  
+    $this->drupalLogin($this->adminuser);
+    $this->drupalGet('/admin/config/system/googleloginform');
+    $this->assertResponse(200);
+    $this->assertFieldById('edit-googlelogin-id', NULL, 'Found Customer Id with the id #edit-googlelogin-id.');
+  
+  }
+
+  /**
+   * Test the form has a secret field.
+   */
+  public function GoogleLoginFormTestSecretFieldExists(){
+     
+    $this->drupalLogin($this->adminuser);
+    $this->drupalGet('/admin/config/system/googleloginform');
+    $this->assertResponse(200);
+    $this->assertFieldById('edit-googlelogin-secret', NULL, 'Found Secret with the id #edit-googlelogin-secret.');
 
   }
+
+
 }
 
