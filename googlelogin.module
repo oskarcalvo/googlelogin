@@ -1,0 +1,20 @@
+<?php
+
+/**
+ * @file
+ * Google login lets user to login using their google account.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+
+
+/**
+ * Implements hook_form_FORM_ID_alter() for Drupal\userForm
+ */
+function googlelogin_form_user_login_form_alter($form, FormStateInterface $form_state, $form_id){
+  //TODO: este es el formulari de login, hacer lo mismo con el formulario de crear contenido.
+  die('esto se acaba');
+  ddl($form_id);
+  ddl($form_state);
+  ddl($form);
+}
