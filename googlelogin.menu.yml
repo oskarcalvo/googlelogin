@@ -1,6 +1,0 @@
-googlelogin.settings:
-  title: 'Google login configuration'
-  parent: system.admin_config_system
-  description: 'Add google login credentials'
-  route_name: system.site_information_settings
-  weight: -20

@@ -1,0 +1,7 @@
+googlelogin.settings_options:
+  title: 'Google login configuration'
+  parent: system.admin_config_services
+  description: 'Add google login credentials'
+  route_name: googlelogin.settings_options
+  weight: -20
+  menu_name: admin

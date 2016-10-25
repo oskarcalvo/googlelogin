@@ -1,4 +1,4 @@
-googlelogin.settings:
+googlelogin.settings_options:
   path: '/admin/config/system/googleloginform'
   defaults:
     _form: '\Drupal\googlelogin\Form\GoogleLoginForm'
