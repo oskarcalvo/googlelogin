@@ -9,6 +9,7 @@ namespace Drupal\googlelogin\Tests;
 
 use Drupal\simpletest\WebTestBase;
 use Drupal\user\Entity\User;
+use Drupal\Core\Url;
 
 /**
  * Provide somo basic test for googlelogin config form.
@@ -37,7 +38,7 @@ class GoogleLoginFormTest extends WebTestBase {
 
   protected function setUp(){
     parent::setUp();
-    $this->anonymousUser = $this->drupalCreateUser(['view published content']);
+    $this->anonymousUser = $this->drupalCreateUser([]);
     $this->adminUser = $this->drupalCreateUser(['administer site configuration']);
   }
 
@@ -45,13 +46,15 @@ class GoogleLoginFormTest extends WebTestBase {
    * Test the URL
    */
   public function testGoogleLoginFormTestRouterURLIsAccessible() {
-/*
+
+    //Try the anonymousUser
     $this->drupalLogin($this->anonymousUser );
-    $this->drupalGet('/admin/config/system/googleloginform');
+    $this->drupalGet(Url::fromRoute('googlelogin.settings_options'));
     $this->assertResponse(403,'Url is not accesible for anonymousUser');
-*/
+
+    //Try the adminUser
     $this->drupalLogin($this->adminUser);
-    $this->drupalGet('/admin/config/system/googleloginform');
+    $this->drupalGet(Url::fromRoute('googlelogin.settings_options'));
     $this->assertResponse(200, 'Url is accesible for adminUser');
 
   }
@@ -60,11 +63,11 @@ class GoogleLoginFormTest extends WebTestBase {
   /**
    * Test the form has a Customer id field.
    */
-/*
+
   public function testGoogleLoginFormTestCustomerIdFieldExists(){
 
     $this->drupalLogin($this->adminUser);
-    $this->drupalGet('/admin/config/system/googleloginform');
+    $this->drupalGet(Url::fromRoute('googlelogin.settings_options'));
     $this->assertResponse(200);
     $this->assertFieldById('edit-googlelogin-id', NULL, 'Found Customer Id with the id #edit-googlelogin-id.');
 
@@ -73,30 +76,30 @@ class GoogleLoginFormTest extends WebTestBase {
   /**
    * Test the form has a secret field.
    */
-/*
+
   public function testGoogleLoginFormTestSecretFieldExists(){
 
     $this->drupalLogin($this->adminUser);
-    $this->drupalGet('/admin/config/system/googleloginform');
+    $this->drupalGet(Url::fromRoute('googlelogin.settings_options'));
     $this->assertResponse(200);
     $this->assertFieldById('edit-googlelogin-secret', NULL, 'Found Secret with the id #edit-googlelogin-secret.');
 
   }
-*/
+
   /**
    * Test to check the value of the form fields.
    */
-/*
+
   public function testGoogleLoginFormTestValidateData(){
 
     $this->drupalLogin($this->adminUser);
-    $this->drupalGet('admin/config/system/googleloginform');
+    $this->drupalGet(Url::fromRoute('googlelogin.settings_options'));
     $this->assertResponse(200);
     $config = $this->config('googlelogin.settings');
     $this->assertFieldByName('googlelogin_id', $config->get('googlelogin.id'), 'The field googlelogin id value is correct');
     $this->assertFieldByName('googlelogin_secret', $config->get('googlelogin.secret'), 'The field googlelogin secret value is correct');
 
   }
-*/
+
 }
 
