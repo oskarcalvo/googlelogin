@@ -46,7 +46,7 @@ class GoogleLoginForm extends ConfigFormBase {
 
     $form['googlelogin_text'] = array(
       '#type' => 'item',
-      '#markup' => '<h4 class="label">' . $this->t('You can create a new project in google following this link:  @link',['@link' => $html_link ]) . '</h4>',
+      '#markup' => '<h4 class="label">' . $this->t('If you don\'t have a Google project to add the Customer Id and Customer secret, you need to create a new project in google following this link:  @link',['@link' => $html_link ]) . '</h4>',
     );
 
 
