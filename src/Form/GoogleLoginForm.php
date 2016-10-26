@@ -9,6 +9,8 @@ namespace Drupal\googlelogin\Form;
 
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
+Use Drupal\Core\Link;
+use Drupal\Core\Url;
 
 /**
  * Configure hello settings for this site.
@@ -34,7 +36,19 @@ class GoogleLoginForm extends ConfigFormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
+
     $config = $this->config('googlelogin.settings');
+
+    $url = Url::fromUri('https://console.developers.google.com');
+    $text = $this->t('Google project');
+    $link = Link::fromTextAndUrl($text, $url);
+    $html_link = render ($link->toRenderable());
+
+    $form['googlelogin_text'] = array(
+      '#type' => 'item',
+      '#markup' => '<h4 class="label">' . $this->t('You can create a new project in google following this link:  @link',['@link' => $html_link ]) . '</h4>',
+    );
+
 
     $form['googlelogin_id'] = array(
       '#type' => 'textfield',
