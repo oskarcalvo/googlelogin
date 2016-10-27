@@ -12,7 +12,7 @@ use Drupal\user\Entity\User;
 use Drupal\Core\Url;
 
 /**
- * Provide somo basic test for googlelogin config form.
+ * Provide somo basic test for googlelogin setting form.
  *
  * @group Googlelogin
  */
@@ -38,6 +38,7 @@ class GoogleLoginFormTest extends WebTestBase {
 
   protected function setUp(){
     parent::setUp();
+
     $this->anonymousUser = $this->drupalCreateUser([]);
     $this->adminUser = $this->drupalCreateUser(['administer site configuration']);
   }
