@@ -12,11 +12,9 @@ use Drupal\user\Entity\User;
 use Drupal\Core\Url;
 
 /**
- * Provide some basic test for the test that create googlelogin in the login form
+ * Provide some basic test for the new link created in Drupal login form
  *
  * @group Googlelogin
- * @runTestsInSeparateProcesses
- * @preserveGlobalState disabled
  */
 class GoogleLoginUserLoginTest extends BrowserTestBase {
 
