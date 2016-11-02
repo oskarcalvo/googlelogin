@@ -1,0 +1,11 @@
+services:
+  googlelogin.googlelogin_authentication:
+    class: Drupal\googlelogin\GoogleLoginAuthentication
+    arguments: [
+      '@Google_Client',
+      '@config.factory'
+    ]
+  Google_client:
+    class: Google_client
+
+
