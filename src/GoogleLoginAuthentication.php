@@ -36,6 +36,7 @@ class GoogleLoginAuthentication {
 
         $this->google_client->setClientId($this->configFactory->get('id'))  ;
         $this->google_client->setClientSecret ($this->configFactory->get('secret')) ;
+        // Temporal url until I create de internal url.
         $url = Url::fromRoute('googlelogin.callback');
         $this->google_client->setRedirectUri ($url->getinternalPath()) ;
         $this->google_client->setScopes ('profile') ;
