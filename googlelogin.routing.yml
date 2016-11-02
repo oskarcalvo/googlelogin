@@ -8,6 +8,6 @@ googlelogin.settings_options:
 googlelogin.callback:
   path: '/googlelogin_callback'
   defaults:
-    _controller: '\Drupal\googlelogin\Controller\GoogleLoginCallback::getGoogleCode'
+    _controller: '\Drupal\googlelogin\Controller\GoogleLoginCallbackController::getGoogleCode'
   requirements:
     _permission: 'access content'
