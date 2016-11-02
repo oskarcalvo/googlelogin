@@ -5,3 +5,9 @@ googlelogin.settings_options:
     _title: 'Settings for google login module'
   requirements:
     _permission: 'administer site configuration'
+googlelogin.callback:
+  path: '/googlelogin_callback'
+  defaults:
+    _controller: '\Drupal\googlelogin\Controller\GoogleLoginCallback::getGoogleCode'
+  requirements:
+    _permission: 'access content'
