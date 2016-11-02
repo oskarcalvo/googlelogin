@@ -7,6 +7,8 @@
 
 use Drupal\Core\Form\FormStateInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Drupal\Core\Url;
+use Drupal\Core\Link;
 
 /**
  * Implements hook_form_FORM_ID_alter() for Drupal\userForm
@@ -14,10 +16,12 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 function googlelogin_form_user_login_form_alter(&$form, FormStateInterface &$form_state, $form_id){
 
   $Authentication = \Drupal::service('googlelogin.googlelogin_authentication');
-  $link = $Authentication->getAuthenticationtUrl();
+  $url = Url::fromUri($Authentication->getAuthenticationtUrl());
+  $text = t('Login with your Google account');
+  $html_link = \Drupal::l($text, $url);
 
   $form['googlelogin_text'] = array(
-    '#markup' => '<h4 class="label"> Google Link</h4>',
+    '#markup' => '<h4 class="label"> '. $html_link.' </h4>',
     '#weight' => 100,
   );
 }
