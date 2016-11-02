@@ -4,6 +4,7 @@ namespace Drupal\googlelogin;
 
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Url;
+use Drupal\Core\Link;
 
 /**
  * Class to wrapp google client class.
@@ -24,7 +25,7 @@ class GoogleLoginAuthentication {
    * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
    *   The config factory.
    */
-  public function __construct(Google_Client $Google_Client, ConfigFactoryInterface $config_factory){
+  public function __construct(\Google_Client $Google_Client, ConfigFactoryInterface $config_factory){
 
     $this->google_client = $Google_Client;
     $this->configFactory = $config_factory;
@@ -35,7 +36,9 @@ class GoogleLoginAuthentication {
 
         $this->google_client->setClientId($this->configFactory->get('id'))  ;
         $this->google_client->setClientSecret ($this->configFactory->get('secret')) ;
-        $this->google_client->setRedirectUri () ;
+        // Temporal url until I create de internal url.
+        $url = Url::fromRoute('googlelogin.callback');
+        $this->google_client->setRedirectUri ($url->getinternalPath()) ;
         $this->google_client->setScopes ('profile') ;
       }
 
@@ -49,6 +52,22 @@ class GoogleLoginAuthentication {
 
     return $this->google_client->createAuthUrl();
 
+  }
+
+
+  public function setToken($token){
+
+    $token = $this->client->fetchAccessTokenWithAuthCode($token);
+/*
+    if(isset($token['error'])){
+      header('Location: logout.php');
+    }
+    */
+    //  d($token);
+    $response = $this->client->verifyIdToken($token['id_token']);
+    //  d($response);
+    //$response = $this->client->setAccessToken ($token);
+    return $response;
   }
 
 
