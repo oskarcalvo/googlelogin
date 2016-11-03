@@ -26,17 +26,28 @@ class GoogleLoginCallbackController extends ControllerBase {
    */
   public function getGoogleCode() {
 
-    $request = \Drupal::request();
-    $code = $request->query->get('code');
+    $code = \Drupal::request()->query->get('code');
+
+    $this->google_client = \Drupal::service('google_client');
+    $this->config_factory = \Drupal::service('config.factory');
+
+    $authentication = new GoogleLoginAuthentication($this->google_client, $this->config_factory);
+
+    $values = $authentication->getUserData($code);
 
 
-    $authentication = new GoogleLoginAuthentication();
 
-
-    $markup = '<h3>' .$code .'</h3>';
+    $markup = '<pre>' .$values .'</pre>';
      return array(
     '#markup' => $markup,
   );
 
   }
+
+
+
+
+
+
+
 }
