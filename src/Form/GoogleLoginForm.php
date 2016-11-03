@@ -56,13 +56,13 @@ class GoogleLoginForm extends ConfigFormBase {
     $form['googlelogin_id'] = array(
       '#type' => 'textfield',
       '#title' => $this->t('Google customer id'),
-      '#default_value' => $config->get('googlelogin.id'),
+      '#default_value' => $config->get('googlelogin_id'),
       '#required' => TRUE,
     );
     $form['googlelogin_secret'] = array(
       '#type' => 'textfield',
       '#title' => $this->t('Google customer secret'),
-      '#default_value' => $config->get('googlelogin.secret'),
+      '#default_value' => $config->get('googlelogin_secret'),
       '#required' => TRUE,
     );
 
@@ -74,8 +74,8 @@ class GoogleLoginForm extends ConfigFormBase {
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $this->config('googlelogin.settings')
-      ->set('googlelogin.id', $form_state->getValue('googlelogin_id'))
-      ->set('googlelogin.secret', $form_state->getValue('googlelogin_secret'))
+      ->set('googlelogin_id', $form_state->getValue('googlelogin_id'))
+      ->set('googlelogin_secret', $form_state->getValue('googlelogin_secret'))
       ->save();
 
     parent::submitForm($form, $form_state);
