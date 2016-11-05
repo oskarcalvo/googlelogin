@@ -32,22 +32,43 @@ class GoogleLoginCallbackController extends ControllerBase {
     $this->config_factory = \Drupal::service('config.factory');
 
     $authentication = new GoogleLoginAuthentication($this->google_client, $this->config_factory);
+    $google_account = $authentication->getUserData($code);
 
-    $values = $authentication->getUserData($code);
+    $drupal_user = user_load_by_mail ($google_account['email']);
 
+    // si no existe guardamos el usuario.
+    if (!$drupal_user || $drupal_user === FALSE){
 
+      $drupal_user = $this->googleloginCreateUser($google_account);
 
-    $markup = '<pre>' .$values .'</pre>';
-     return array(
-    '#markup' => $markup,
-  );
+    }
+
+    \Drupal::moduleHandler()->invoke('user', user_login_finalize($drupal_user));
+    $this->redirect('user');
 
   }
 
 
+  /**
+   * Create drupal account with google account data
+   * @param  array  $account Google account data
+   * @return object $user Drupal user.
+   */
+  private function googleloginCreateUser(array $account) {
 
+    $new_user = \Drupal\user\Entity\User::create();
+    $new_user->setPassword(user_password(25));
+    $new_user->setEmail($account['email']);
+    $new_user->setUsername($account['name']);
+    $new_user->set('init', 'email');
+    $new_user->enforceIsNew();
+    $new_user->set('langcode', $account['locale']);
+    $new_user->set('preferred_langcode', $account['locale']);
+    $new_user->set('preferred_admin_langcode', $account['locale']);
+    $new_user->activate();
+    $created_user = $new_user->save();
 
-
-
+    return $new_user;
+  }
 
 }
