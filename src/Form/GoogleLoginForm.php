@@ -1,15 +1,15 @@
 <?php
 
+namespace Drupal\googlelogin\Form;
+
 /**
  * @file
- * Contains Drupal\googlelogin\Form\GoogleLoginFormForm
+ * Contains Drupal\googlelogin\Form\GoogleLoginFormForm.
  */
-
-namespace Drupal\googlelogin\Form;
 
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
-Use Drupal\Core\Link;
+use Drupal\Core\Link;
 use Drupal\Core\Url;
 
 /**
@@ -46,22 +46,21 @@ class GoogleLoginForm extends ConfigFormBase {
     $link = Link::fromTextAndUrl($text, $url);
     $new_link = ($link->toRenderable());
     $new_link['#attributes'] = ['target' => ['blank']];
-    $html_link = render ($link);
-
+    $html_link = render($link);
 
     $form['googlelogin_text'] = array(
       '#type' => 'item',
-      '#markup' => '<h4 class="label">' . $this->t('If you don\'t have a Google project to add the Customer Id and Customer secret, you need to create a new project in google following this link:  @link',['@link' => $html_link ]) . '</h4>',
+      '#markup' => '<h4 class="label">' . $this->t("If you don't have a Google project to add the Customer Id and Customer secret, you need to create a new project in google following this link:  @link", ['@link' => $html_link]) . '</h4>',
     );
     $form['googlelogin_id'] = array(
       '#type' => 'textfield',
-      '#title' => $this->t('Google customer id'),
+      '#title' => $this->t("Google customer id"),
       '#default_value' => $config->get('googlelogin_id'),
       '#required' => TRUE,
     );
     $form['googlelogin_secret'] = array(
       '#type' => 'textfield',
-      '#title' => $this->t('Google customer secret'),
+      '#title' => $this->t("Google customer secret"),
       '#default_value' => $config->get('googlelogin_secret'),
       '#required' => TRUE,
     );
@@ -80,5 +79,5 @@ class GoogleLoginForm extends ConfigFormBase {
 
     parent::submitForm($form, $form_state);
   }
+
 }
-?>
