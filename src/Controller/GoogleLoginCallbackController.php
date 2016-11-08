@@ -29,6 +29,8 @@ class GoogleLoginCallbackController extends ControllerBase {
     $authentication = new GoogleLoginAuthentication($this->google_client, $this->config_factory);
     $google_account = $authentication->getUserData($code);
     if (isset($google_account['error'])) {
+      \Drupal::logger('googlelogin')->error($this->t("Something was wrong trying to login with Google."));
+
       $this->redirect('user');
     }
 
