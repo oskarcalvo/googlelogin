@@ -65,7 +65,7 @@ class GoogleLoginAuthentication {
    *         string give back from Google Client API.
    *
    * @return array
-   *         Array with Google account or with Google account error.
+   *         Array with Google account or with Google error.
    */
   public function getUserData($code) {
 
