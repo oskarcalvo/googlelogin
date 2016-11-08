@@ -1,11 +1,11 @@
 <?php
 
+namespace Drupal\Tests\googlelogin\Functional;
+
 /**
  * @file( (GoogleLoginUserLoginTest))
  * Contains \Drupal\googlelogin\Test\GoogleLoginUserLoginTest
  */
-
-namespace Drupal\Tests\googlelogin\Functional;
 
 use Drupal\Tests\BrowserTestBase;
 use Drupal\user\Entity\User;
@@ -38,38 +38,30 @@ class GoogleLoginUserLoginTest extends BrowserTestBase {
    */
   protected function setUp() {
     parent::setUp();
-
-
   }
-
 
   /**
    * Check that the anonymous user can see the form
    */
   public function testGoogleLoginCheckAccessUserLoginForm () {
-
     $this->anonymousUser = $this->drupalCreateUser([]);
     // log as anonymous, is the only user that can access to this form.
     $this->drupalLogin($this->anonymousUser);
     $this->druaplGet(Url::fromRemote('user.login'));
     //Check that the anonymous user can access to login form.
     $this->assertSession()->statusCodeEquals(200);
-
-
   }
 
   /**
    * Check there is a link in the login form
    */
   public function testGoogleLoginCheckLinkIsAvailable () {
-
     $this->anonymousUser = $this->drupalCreateUser([]);
     // log as anonymous, is the only user that can access to this form.
     $this->drupalLogin($this->anonymousUser);
     $this->druaplGet(Url::fromRemote('user.login'));
     $this->assertSession()->statusCodeEquals(200);
-    $this->assertSession()->pageTextContains('Google Login');
-
+    $this->assertSession()->pageTextContains('Login with your Google account');
   }
 
 }
