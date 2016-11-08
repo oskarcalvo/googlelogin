@@ -36,7 +36,7 @@ class GoogleLoginFormTest extends WebTestBase {
   public static $modules = ['googlelogin', 'simpletest','devel','devel_debug_log'];
 
 
-  protected function setUp(){
+  protected function setUp() {
     parent::setUp();
 
     $this->anonymousUser = $this->drupalCreateUser([]);
@@ -57,49 +57,38 @@ class GoogleLoginFormTest extends WebTestBase {
     $this->drupalLogin($this->adminUser);
     $this->drupalGet(Url::fromRoute('googlelogin.settings_options'));
     $this->assertResponse(200, 'Url is accesible for adminUser');
-
   }
-
 
   /**
    * Test the form has a Customer id field.
    */
-
-  public function testGoogleLoginFormTestCustomerIdFieldExists(){
-
+  public function testGoogleLoginFormTestCustomerIdFieldExists() {
     $this->drupalLogin($this->adminUser);
     $this->drupalGet(Url::fromRoute('googlelogin.settings_options'));
     $this->assertResponse(200);
     $this->assertFieldById('edit-googlelogin-id', NULL, 'Found Customer Id with the id #edit-googlelogin-id.');
-
   }
 
   /**
    * Test the form has a secret field.
    */
-
-  public function testGoogleLoginFormTestSecretFieldExists(){
-
+  public function testGoogleLoginFormTestSecretFieldExists() {
     $this->drupalLogin($this->adminUser);
     $this->drupalGet(Url::fromRoute('googlelogin.settings_options'));
     $this->assertResponse(200);
     $this->assertFieldById('edit-googlelogin-secret', NULL, 'Found Secret with the id #edit-googlelogin-secret.');
-
   }
 
   /**
    * Test to check the value of the form fields.
    */
-
-  public function testGoogleLoginFormTestValidateData(){
-
+  public function testGoogleLoginFormTestValidateData() {
     $this->drupalLogin($this->adminUser);
     $this->drupalGet(Url::fromRoute('googlelogin.settings_options'));
     $this->assertResponse(200);
     $config = $this->config('googlelogin.settings');
     $this->assertFieldByName('googlelogin_id', $config->get('googlelogin.id'), 'The field googlelogin id value is correct');
     $this->assertFieldByName('googlelogin_secret', $config->get('googlelogin.secret'), 'The field googlelogin secret value is correct');
-
   }
 
 }
