@@ -26,7 +26,7 @@ class GoogleLoginUserLoginTest extends BrowserTestBase {
   /**
    * Enabled modules
    */
-  public static $modules = ['googlelogin', 'simpletest','devel','devel_debug_log', 'user'];
+  public static $modules = ['googlelogin', 'user'];
 
   /**
    * Use the Standard profile to test help implementations of many core modules.

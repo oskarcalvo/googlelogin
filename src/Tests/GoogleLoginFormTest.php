@@ -33,7 +33,7 @@ class GoogleLoginFormTest extends WebTestBase {
   /**
    * Module to install
    */
-  public static $modules = ['googlelogin', 'simpletest','devel','devel_debug_log'];
+  public static $modules = ['googlelogin', 'user'];
 
 
   protected function setUp() {
