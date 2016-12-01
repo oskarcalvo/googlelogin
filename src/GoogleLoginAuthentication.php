@@ -25,7 +25,7 @@ class GoogleLoginAuthentication {
    * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
    *   The config factory.
    */
-  public function __construct(Google_Client $google_client, ConfigFactoryInterface $config_factory) {
+  public function __construct(\Google_Client $google_client, ConfigFactoryInterface $config_factory) {
 
     $this->google_client = $google_client;
     $this->configFactory = $config_factory->get('googlelogin.settings');
