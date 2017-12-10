@@ -5,7 +5,7 @@ Login in Drupal with your google acount
 
 ### Create a google project
 
-You must go to https://www.drupal.org/project/sociallogin and create a Web project, and get the Client ID, and the Secret Client.
+You must go to https://developers.google.com/api-client-library/php/auth/web-app#creatingcred and create a Web project, and get the Client ID, and the Secret Client.
 
 ### Configure googlelogin module
 
